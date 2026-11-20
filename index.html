@@ -23,6 +23,7 @@ dialog{padding:0;border:1px solid #e2e2e2;box-shadow:0 24px 90px rgba(0,0,0,.14)
 @media(max-width:640px){.wrap{width:calc(100% - 38px)}.site-header{padding:24px 0 18px}.nav{gap:19px}.hero{padding:78px 0 90px}.hero h1{font-size:29px}.project-grid{grid-template-columns:1fr}.project-tile{min-height:135px;padding:19px}.filters{gap:15px}.about-section{grid-template-columns:1fr;gap:10px;padding-bottom:74px}.work-section{padding-bottom:75px}.dialog-shell{padding:30px 22px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.project-tile{transition:none}}
 
+.paper-note{font-size:13px;line-height:1.8;color:#666;margin:8px 0 12px}.paper-preview{display:block;width:100%;height:420px;border:1px solid var(--line);background:#f7f7f7;margin:10px 0 18px}@media(max-width:640px){.paper-preview{height:360px}}
 </style>
 
 </head>
@@ -45,7 +46,7 @@ dialog{padding:0;border:1px solid #e2e2e2;box-shadow:0 24px 90px rgba(0,0,0,.14)
 </section>
 <section class="work-section" id="projects" aria-labelledby="projects-title">
  <div class="section-head"><div><p class="kicker">01 / Projects</p><h2 id="projects-title">Selected projects</h2><p class="section-intro">From neural networks to tiny virtual worlds. A mix of things I’ve built, explored, and helped bring to life.</p></div></div>
- <div class="filters" role="group" aria-label="Filter projects"><button class="filter active" data-filter="all" aria-pressed="true">Everything <span>11</span></button><button class="filter" data-filter="ai" aria-pressed="false">AI & ML</button><button class="filter" data-filter="engineering" aria-pressed="false">Software Engineering</button><button class="filter" data-filter="web" aria-pressed="false">Web & Product</button></div>
+ <div class="filters" role="group" aria-label="Filter projects"><button class="filter active" data-filter="all" aria-pressed="true">Everything <span>12</span></button><button class="filter" data-filter="ai" aria-pressed="false">AI & ML</button><button class="filter" data-filter="engineering" aria-pressed="false">Software Engineering</button><button class="filter" data-filter="web" aria-pressed="false">Web & Product</button></div>
  <div class="project-grid" id="project-grid"></div>
 </section>
 <section class="about-section" id="about" aria-labelledby="about-title">
@@ -59,6 +60,7 @@ dialog{padding:0;border:1px solid #e2e2e2;box-shadow:0 24px 90px rgba(0,0,0,.14)
 <script>
 // Edit the entries below to update the site's projects and experience.
 const projects = [
+  {title:'AI & ML User Research',localPdf:'research-paper.pdf',category:'ai',label:'AI & ML',subtitle:'User research and interview-based research',art:'art-ai',glyph:'◎',description:'A research paper examining AI and ML through a user-centered lens, with an emphasis on user research and interview-based research.',tech:'User Research · Interview-Based Research · AI & ML',details:['User-centered research approach','Interview-based qualitative research','Research synthesis and written communication'],links:[{label:'Read research paper ↗',url:'https://drive.google.com/file/d/1HHHSOGMUXHL1FW9919XbSIIFd4XrGnca/view?usp=sharing'}]},
   {title:'Image Captioning with CNNs & LSTMs',category:'ai',label:'AI & ML',subtitle:'Computer vision meets natural language',image:null,art:'art-ai',glyph:'◉',description:'Built an image-captioning pipeline combining convolutional image features with an LSTM language model. Trained on Flickr8k captions and assessed generated descriptions with BLEU, ROUGE-L, and METEOR.',details:['CNN image feature extraction combined with an LSTM caption generator','Caption tokenization, sequence training, and evaluation across multiple text metrics'],tech:'Python · Deep Learning · CNN · LSTM · NLP',links:[{label:'Open Google Colab ↗',url:'https://colab.research.google.com/drive/1-xePrEwbC1zoyUNUizvzFlThG4vD6XIK?usp=drive_link'}]},
   {title:'ML Application to Criminal Recidivism',category:'ai',label:'AI & ML',subtitle:'Applied machine learning research',art:'art-ml',glyph:'⚖',description:'An applied machine-learning project examining criminal recidivism. Explore the linked project materials for the dataset, methodology, and evaluation.',tech:'Applied ML · Model Evaluation',links:[{label:'View project folder ↗',url:'https://drive.google.com/drive/folders/1SnggM5n6DixAJUBW-SS3raLlzNx-Ce8Q?usp=drive_link'}]},
   {title:'Deep Learning — Ethical Pitfalls',category:'ai',label:'AI & ML',subtitle:'Responsible AI exploration',art:'art-ai',glyph:'✳',description:'A project exploring ethical considerations in deep learning. View the linked work for its specific analysis and conclusions.',tech:'Deep Learning · Responsible AI',links:[{label:'View project ↗',url:'https://drive.google.com/file/d/1w5EPX5fxlyHPoVFBPnwEyrH8rHIlZlJd/view?usp=drive_link'}]},
@@ -86,8 +88,25 @@ function render(filter='all'){
 }
 function openProject(i){
   const p=projects[i]; if(!p)return;
-  content.innerHTML=`<p class="kicker">${esc(p.label)} / PROJECT NOTES</p><h2 class="dialog-title" id="dialog-title">${esc(p.title)}</h2>${p.image?`<img class="dialog-image" src="${esc(p.image)}" alt="${esc(p.title)} project image">`:''}<p class="dialog-desc">${esc(p.description)}</p><p class="dialog-label">TOOLS & TOPICS</p><p class="dialog-desc">${esc(p.tech)}</p>${p.details?`<p class="dialog-label">HIGHLIGHTS</p><ul class="dialog-list">${p.details.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:''}<div class="dialog-buttons">${p.links.map(l=>`<a href="${esc(l.url)}" target="_blank" rel="noopener noreferrer">${esc(l.label)}</a>`).join('')}</div>`;
+  content.innerHTML=`<p class="kicker">${esc(p.label)} / PROJECT NOTES</p><h2 class="dialog-title" id="dialog-title">${esc(p.title)}</h2>${p.image?`<img class="dialog-image" src="${esc(p.image)}" alt="${esc(p.title)} project image">`:''}<p class="dialog-desc">${esc(p.description)}</p><p class="dialog-label">TOOLS & TOPICS</p><p class="dialog-desc">${esc(p.tech)}</p>${p.details?`<p class="dialog-label">HIGHLIGHTS</p><ul class="dialog-list">${p.details.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:''}${p.localPdf?`<p class="dialog-label">RESEARCH PAPER</p><div class="paper-viewer" id="paper-viewer"><p class="paper-note">Read the full research paper using the link below.</p></div>`:''}<div class="dialog-buttons">${p.links.map(l=>`<a href="${esc(l.url)}" target="_blank" rel="noopener noreferrer">${esc(l.label)}</a>`).join('')}</div>`;
   dialog.showModal();
+  // Only embed a real PDF served by this website. Google Drive's iframe viewer
+  // may reject embedding; a local PDF avoids that dependency.
+  if(p.localPdf){
+    const viewer=document.getElementById('paper-viewer');
+    const filename=p.localPdf;
+    fetch(filename,{method:'HEAD'}).then(response=>{
+      if(!dialog.open || !viewer || !viewer.isConnected || content.querySelector('#paper-viewer')!==viewer)return;
+      if(response.ok && (response.headers.get('content-type')||'').toLowerCase().includes('pdf')){
+        const iframe=document.createElement('iframe');
+        iframe.className='paper-preview';
+        iframe.src=filename;
+        iframe.title=p.title+' — research paper';
+        iframe.loading='lazy';
+        viewer.replaceChildren(iframe);
+      }
+    }).catch(()=>{});
+  }
 }
 render();
 grid.addEventListener('click',e=>{const b=e.target.closest('[data-project]');if(b)openProject(Number(b.dataset.project));});
